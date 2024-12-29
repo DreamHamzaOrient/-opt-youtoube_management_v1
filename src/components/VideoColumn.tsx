@@ -10,12 +10,12 @@ type Video = Database['public']['Tables']['videos']['Row'] & {
 
 export interface VideoColumnProps {
   title: string;
-  etat?: 'recent' | 'en_cours' | 'valide';
+  etat: 'recent' | 'en_cours' | 'valide';
   onVideoClick?: (video: Video) => void;
 }
 
 export function VideoColumn({ title, etat, onVideoClick }: VideoColumnProps) {
-  const { videos, loading, error, loadMore } = useVideos(etat || 'recent');
+  const { videos, loading, error, loadMore } = useVideos(etat);
 
   return (
     <div className="flex-1 min-w-0 bg-[#181818] rounded-lg border border-[#2A2A2A] p-6">
@@ -41,7 +41,7 @@ export function VideoColumn({ title, etat, onVideoClick }: VideoColumnProps) {
                 }}
                 title={video.titre}
                 description={video.description || ''}
-                etat={video.etat}
+                etat={video.etat as 'recent' | 'en_cours' | 'valide'}
                 publishedAt={new Date(video.date_publication || '').toLocaleDateString()}
               />
             </div>

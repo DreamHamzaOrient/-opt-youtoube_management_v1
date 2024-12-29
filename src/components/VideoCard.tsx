@@ -1,4 +1,3 @@
-import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Video, FileText, Podcast, CheckCircle, BellRing, XCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';

@@ -14,7 +14,6 @@ interface TableStats {
 
 export function DatabaseMonitoring() {
   const [isConnected, setIsConnected] = useState<boolean>(false);
-  const [tablesExist, setTablesExist] = useState<boolean>(false);
   const [tableStats, setTableStats] = useState<TableStats[]>([
     { name: 'YouTubeurs', count: 0, status: 'error', icon: Users },
     { name: 'Vidéos', count: 0, status: 'error', icon: Video },
@@ -42,7 +41,6 @@ export function DatabaseMonitoring() {
     try {
       const status = await checkDatabaseStatus();
       setIsConnected(status.isConnected);
-      setTablesExist(status.tablesExist);
       setError(status.error);
       
       setTableStats([

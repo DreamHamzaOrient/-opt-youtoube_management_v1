@@ -1,6 +1,6 @@
 import { supabase } from './supabase';
 
-export async function updateVideoStatus(videoId: string, etat: 'recent' | 'en_cours' | 'valide') {
+export async function updateVideoStatus(videoId: string, etat: string) {
   try {
     const { error } = await supabase
       .from('videos')

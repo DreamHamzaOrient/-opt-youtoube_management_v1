@@ -2,11 +2,10 @@ import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface TopNavProps {
-  onMenuClick: () => void;
   onMainClick?: () => void;
 }
 
-export function TopNav({ onMenuClick, onMainClick }: TopNavProps) {
+export function TopNav({ onMainClick }: TopNavProps) {
   return (
     <div className="h-16 bg-[#1A1A1A] border-b border-[#2A2A2A] px-4 flex items-center justify-between">
       <Button

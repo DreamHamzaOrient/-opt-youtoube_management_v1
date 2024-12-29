@@ -12,14 +12,13 @@ type Video = Database['public']['Tables']['videos']['Row'] & {
 };
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isSidebarOpen, _] = useState(true);
   const [currentView, setCurrentView] = useState<'main' | 'config' | 'video'>('main');
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
   return (
     <div className="min-h-screen bg-[#121212]">
       <TopNav 
-        onMenuClick={() => setIsSidebarOpen(!isSidebarOpen)} 
         onMainClick={() => setCurrentView('main')}
       />
       <div className="flex relative">
@@ -68,10 +67,11 @@ function App() {
                 title: selectedVideo.titre,
                 description: selectedVideo.description || '',
                 publishedAt: new Date(selectedVideo.date_publication || '').toLocaleDateString(),
-                etat: selectedVideo.etat,
-                transcription: selectedVideo.transcription,
+                etat: selectedVideo.etat as 'recent' | 'en_cours' | 'valide',
+                transcription: selectedVideo.transcription || undefined,
                 audio_url: selectedVideo.audio_url,
                 lien_video: selectedVideo.lien_video,
+                duree: selectedVideo.duree,
               }}
               onBack={() => {
                 setCurrentView('main');

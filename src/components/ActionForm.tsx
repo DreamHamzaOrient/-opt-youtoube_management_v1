@@ -7,6 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calendar, Clock, AlertCircle } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
+import { updateVideoStatus } from '@/lib/videos';
 
 interface ActionFormProps {
   videoId: string;
@@ -73,6 +74,11 @@ export function ActionForm({ videoId, onSuccess, onCancel }: ActionFormProps) {
             date_closure: formData.date_closure || null
           }
         ]);
+
+      // Update video status if action is in progress
+      if (formData.etat_action === 'in_progress') {
+        await updateVideoStatus(videoId, 'en_cours');
+      }
 
       if (supabaseError) throw supabaseError;
       onSuccess();

@@ -1,5 +1,5 @@
 import { Card } from '@/components/ui/card';
-import { Video, FileText, Podcast, CheckCircle, XCircle, ArrowLeft, Play, Pause, BellRing } from 'lucide-react';
+import { Video, FileText, Podcast, CheckCircle, XCircle, ArrowLeft, BellRing } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { AudioPlayer } from './AudioPlayer';
 import { Button } from '@/components/ui/button';
@@ -21,8 +21,9 @@ interface VideoDetailProps {
     publishedAt: string;
     etat: 'recent' | 'en_cours' | 'valide';
     transcription?: string;
-    audio_url?: string | null;
+    audio_url: string | null;
     lien_video?: string | null;
+    duree?: string | null;
   };
   onBack: () => void;
 }
@@ -153,7 +154,7 @@ export function VideoDetail({ video, onBack }: VideoDetailProps) {
               <Button
                 variant="link"
                 className="text-xs text-[#4A90E2]"
-                onClick={() => window.open(video.audio_url, '_blank')}
+                onClick={() => video.audio_url ? window.open(video.audio_url, '_blank') : undefined}
               >
                 Tester le lien direct
               </Button>

@@ -7,7 +7,7 @@ interface Action {
   id: string;
   nom_action: string;
   description: string | null;
-  etat_action: 'open' | 'in_progress' | 'closed';
+  etat_action: string;
   date_creation: string;
   date_closure: string | null;
 }
